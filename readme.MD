@@ -33,13 +33,17 @@ Create a secrets.yml file to securely store sensitive data (e.g., DB username an
 
 Use a .env file locally to manage environment variables for development.
 
-🛠 Step 6: Deployment Scripts
+🔐 Step 6: Persistent Volume Claim
+
+Add a pvc.yml file and modify deployment files to include a persistent volume
+
+🛠 Step 7: Deployment Scripts
 
 deploy.sh: Script to deploy all services and configuration to your Kubernetes cluster.
 
 teardown.sh: Script to delete all Kubernetes resources created by this deployment.
 
-🧠 Step 7: Application Configuration
+🧠 Step 8: Application Configuration
 
 Modify app.py to dynamically read from environment variables defined in the ConfigMap and Secrets.
 
