@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twoge
+  labels:
+    app: twoge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twoge
+  template:
+    metadata:
+      labels:
+        app: twoge
+    spec:
+      containers:
+        - name: twoge
+          image: jeremyhuegel/twoge:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: FLASK_ENV
+              value: development
+            - name: FLASK_APP
+              value: app.py
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_PASSWORD
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_DATABASE
+            - name: MYSQL_HOST
+              value: mysql
+              # valueFrom:
+              #   configMapKeyRef:
+              #     name: config-map
+              #     key: MYSQL_HOST
+
+            # - name: DATABASE_URL
+            #   value: mysql+pymysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@$(MYSQL_HOST)/$(MYSQL_DATABASE)
+
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 20
+
+      volumes:
+        - name: app-volume
+          emptyDir: {}

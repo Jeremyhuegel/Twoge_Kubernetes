@@ -2,13 +2,23 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-import os
+import os, time
 from dotenv import load_dotenv
 load_dotenv()
 
+
+
+
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+
+user = os.getenv("MYSQL_USER", "username")
+password = os.getenv("MYSQL_PASSWORD", "password")
+host = os.getenv("MYSQL_HOST", "localhost")
+database = os.getenv("MYSQL_DATABASE", "mysql")
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{user}:{password}@{host}:3306/{database}"
+
+
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
