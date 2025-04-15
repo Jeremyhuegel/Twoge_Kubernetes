@@ -11,9 +11,9 @@ Push the image to Docker Hub for accessibility within Kubernetes.
 Optionally, use a docker-compose.yml file to help run multiple containers locally for development and testing.
 
 ☸️ Step 2: Twoge Kubernetes Configuration
-Create the Twoge Deployment manifest (twoge-deployment.yml).
+Create the Twoge Deployment manifest (deployment.yml).
 
-Create the Twoge Service manifest (twoge-service.yml) to expose the application.
+Create the Twoge Service manifest (service.yml) to expose the application.
 
 🛢 Step 3: MySQL Kubernetes Configuration
 Create the MySQL Deployment manifest (mysql-deployment.yml).
@@ -29,6 +29,7 @@ Create a secrets.yml file to securely store sensitive data (e.g., DB username an
 Use a .env file locally to manage environment variables for development.
 
 🛠 Step 6: Deployment Scripts
+
 deploy.sh: Script to deploy all services and configuration to your Kubernetes cluster.
 
 teardown.sh: Script to delete all Kubernetes resources created by this deployment.
