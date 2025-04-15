@@ -35,3 +35,6 @@ teardown.sh: Script to delete all Kubernetes resources created by this deploymen
 
 🧠 Step 7: Application Configuration
 Modify app.py to dynamically read from environment variables defined in the ConfigMap and Secrets.
+
+
+![Image](https://github.com/user-attachments/assets/c2cd71b9-4023-4eac-aa62-5333808045b0)
