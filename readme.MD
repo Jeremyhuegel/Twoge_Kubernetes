@@ -4,6 +4,7 @@
 This guide outlines the steps to containerize and deploy the Twoge application and a MySQL database using Docker, Kubernetes, and supporting configuration files.
 
 📦 Step 1: Containerization
+
 Create a Dockerfile to build the Twoge application image.
 
 Push the image to Docker Hub for accessibility within Kubernetes.
